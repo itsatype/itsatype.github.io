@@ -2,9 +2,9 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: Leah's Code-Along Blog
-subtitle: A blogging framework for hackers.
+url: http://itsatype.github.io
+title: Tech Talk
+subtitle: 
 author: Leah
 simple_search: https://www.google.com/search
 description: 
