@@ -4,7 +4,7 @@
   <title><![CDATA[Tech Talk]]></title>
   <link href="http://itsatype.github.io/atom.xml" rel="self"/>
   <link href="http://itsatype.github.io/"/>
-  <updated>2016-03-01T00:06:48-05:00</updated>
+  <updated>2016-03-01T00:10:11-05:00</updated>
   <id>http://itsatype.github.io/</id>
   <author>
     <name><![CDATA[Leah]]></name>
@@ -20,7 +20,7 @@
     <id>http://itsatype.github.io/blog/2016/02/29/serverse</id>
     <content type="html"><![CDATA[<h1>Off with their Headers</h1>
 
-<p>Error processing input, expected syntax: {% img [class name(s)] [http[s]:/]/path/to/image [width [height]] [title text | &ldquo;title text&rdquo; [&ldquo;alt text&rdquo;]] %}</p>
+<p><img src= "queen_of_hearts.jpeg"></p>
 
 <p>Really, what are servers? Turns out, it’s not that complicated.  Say you go online and visit stackoverflow.com, because you’re desperately trying to get your code to work. Your computer then sends a request to the Stackoverflow server.</p>
 
