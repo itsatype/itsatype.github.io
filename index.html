@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Tech Talk</title>
+  <title>Leah's Loop</title>
   <meta name="author" content="Leah">
 
   
-  <meta name="description" content="The double pipes, also known as a short circuit operator because it will only evaluate the second argument if the first argument is not sufficient &hellip;">
+  <meta name="description" content="Magic in Macros &amp; Metaprogramming I recently began learning Ruby on Rails, and my predominant thought was ‘Is this magic?&lsquo;. Rails &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +21,7 @@
   <link rel="canonical" href="http://itsatype.github.io/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Tech Talk" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Leah's Loop" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -36,7 +36,7 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Tech Talk</a></h1>
+  <h1><a href="/">Leah's Loop</a></h1>
   
 </hgroup>
 
@@ -63,6 +63,219 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/03/15/magic-in-macros-and-metaprogramming/">That’s So Meta</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-03-15T00:24:19-04:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>12:24 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Magic in Macros &amp; Metaprogramming</h2>
+
+<p><img src="/images/magic.png" width="600"></p>
+
+<p>I recently began learning Ruby on Rails, and my predominant thought was ‘Is this magic?&lsquo;. Rails incorporates the use of ‘macros’, which are simple yet powerful statements that run many lines of code.  Some of the more common ones are ‘resources’, ‘has_many / belongs_to’, and ‘accepts nested attributes’.  And while a magician never reveals his tricks, macros are simply Ruby code. Ruby&rsquo;s flexible approach to syntax coupled with Rail’s ‘convention over configuration’ just makes this seem cooler that it actually is. AKA magic.</p>
+
+<p>Using metaprogramming, Rails writes a lot of the methods for us.  And because Ruby is a dynamic language (versus a statically typed language),  it gives you the freedom to define methods and even classes during runtime.</p>
+
+<p>A dynamic language, in a nutshell, allows you to set the same variable to an integer, string, hash, etc.  It allows you to do the following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">var</span> <span class="n">something</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="n">something</span> <span class="o">=</span> <span class="s2">&quot;Foo&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">something</span> <span class="o">=</span> <span class="p">{</span><span class="n">foo</span> <span class="o">=&gt;</span> <span class="err">‘</span><span class="n">bar</span><span class="err">’</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here, I will attempt to break down the ActiveRecord has_many macro and explain how it works under the hood.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Ruby</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">has_many</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="err">‘</span><span class="c1">#{self} has many #{name}”</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:gems</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">=&gt;</span> <span class="err">“</span><span class="no">Ruby</span> <span class="n">has</span> <span class="n">many</span> <span class="n">gems</span><span class="err">”</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If has_many :gems calls on the method Ruby.has_many method, and passed in gems for the name argument.</p>
+
+<p>In Rails, the has_many dynamically defines a handful of methods for managing the association.  For example, in this case it would generate a gems method, that would return the gems associated with the Ruby class.  How would we do that?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Ruby</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">has_many</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2"> has many </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">”</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2"> def gems</span>
+</span><span class='line'><span class="s2">     puts “SELECT * FROM gems WHERE …&quot;</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="err">“</span><span class="n">returning</span> <span class="n">gems</span><span class="err">”</span>
+</span><span class='line'>      <span class="o">[]</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:gems</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>However, this is hard-coded, and we don’t yet know the names of those methods until run-time, so we need to dynamically define those methods, on the fly.</p>
+
+<p> Dynamic methods are a set of methods that can create or call methods when the actual name of the method is not known. The define_method is a dynamic method which takes the name of the method we want to generate.  The body of the block becomes the body of the method.</p>
+
+<p>We want to define a method that corresponds to the name of the association, and we have that in the argument name.  define_methods, when executed, create other methods that can then be called on an instance object. It defines an instance method in the receiver, which in this case is the Ruby class.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Ruby</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">has_many</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="err">‘</span><span class="c1">#{self} has many #{name}”</span>
+</span><span class='line'>  
+</span><span class='line'>      <span class="n">define_method</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>          <span class="nb">puts</span> <span class="err">“</span><span class="no">SELECT</span> <span class="o">*</span> <span class="no">FROM</span> <span class="c1">#{name} WHERE …”</span>
+</span><span class='line'>          <span class="nb">puts</span> <span class="err">“</span><span class="n">returning</span> <span class="c1">#{name}”</span>
+</span><span class='line'>          <span class="o">[]</span>
+</span><span class='line'>          
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:gems</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">ruby</span> <span class="o">=</span> <span class="no">Ruby</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">ruby</span><span class="o">.</span><span class="n">gems</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">=&gt;</span>
+</span><span class='line'><span class="no">Ruby</span> <span class="n">has</span> <span class="n">many</span> <span class="n">gems</span>
+</span><span class='line'><span class="no">SELECT</span> <span class="o">*</span> <span class="no">FROM</span> <span class="n">gems</span> <span class="no">WHERE</span><span class="err">…</span>
+</span><span class='line'><span class="n">returning</span> <span class="n">gems</span><span class="o">.</span>
+</span><span class='line'><span class="o">[</span><span class="err">“</span><span class="no">Annotate</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="no">Pry</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="no">Better_errors</span><span class="err">”</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When we run this code it first calls on has_many :gems, and defines the method.  Then if we call ruby.gems, it will run the method and return the gems.<br/>
+Because we define it dynamically, we can also say has_many :methods, or anything else, for that matter.</p>
+
+<p>Now how do we share this across multiple classes?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">ActiveRecord</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">has_many</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="err">‘</span><span class="c1">#{self} has many #{name}”</span>
+</span><span class='line'>  
+</span><span class='line'>      <span class="n">define_method</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>          <span class="nb">puts</span> <span class="err">“</span><span class="no">SELECT</span> <span class="o">*</span> <span class="no">FROM</span> <span class="c1">#{name} WHERE …”</span>
+</span><span class='line'>          <span class="nb">puts</span> <span class="err">“</span><span class="n">returning</span> <span class="c1">#{name}”</span>
+</span><span class='line'>          <span class="o">[]</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Ruby</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:gems</span>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:methods</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now things are beginning to look more familiar.  We put this in the class Base in a module named ActiveRecord, and have our classes inherit these magical powers.</p>
+
+<p><img src="/images/i_love_magic.gif" width="600"></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -220,6 +433,10 @@ For me, they&rsquo;ve been like that cool kid that you see around, but don&rsquo
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/03/15/magic-in-macros-and-metaprogramming/">That’s So Meta</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/02/13/my-first-post-on-octopress/">Pipes</a>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://itsatype.github.io/blog/2016/03/15/magic-in-macros-and-metaprogramming/</loc>
+<lastmod>2016-03-15T00:24:19-04:00</lastmod>
+</url>
+<url>
 <loc>http://itsatype.github.io/blog/2016/02/13/my-first-post-on-octopress/</loc>
 <lastmod>2016-02-13T00:00:33-05:00</lastmod>
 </url>
@@ -15,5 +19,8 @@
 </url>
 <url>
 <loc>http://itsatype.github.io/blog/categories/school/</loc>
+</url>
+<url>
+<loc>http://itsatype.github.io/blog/categories/</loc>
 </url>
 </urlset>
