@@ -117,6 +117,6 @@ And voila, there we have it.
 Okay, so maybe Javascript is still a little weird. But weird is good.  At least that's what my mother used to tell me.
 
 #### *“Be weird. Be random. Be who you are."*
--- *C.S. Lewis*
+-- *C.S. Lewis*	
 
 {% img /images/bowties.png 500 %}
