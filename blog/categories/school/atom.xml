@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: School | Leah's Loop]]></title>
+  <title><![CDATA[Category: school | Leah's Loop]]></title>
   <link href="http://itsatype.github.io/blog/categories/school/atom.xml" rel="self"/>
   <link href="http://itsatype.github.io/"/>
-  <updated>2016-03-27T17:01:06-04:00</updated>
+  <updated>2016-04-09T16:54:51-04:00</updated>
   <id>http://itsatype.github.io/</id>
   <author>
     <name><![CDATA[Leah]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[That’s So Meta]]></title>
+    <title type="html"><![CDATA[That’s so meta]]></title>
     <link href="http://itsatype.github.io/blog/2016/03/15/magic-in-macros-and-metaprogramming/"/>
     <updated>2016-03-15T00:24:19-04:00</updated>
     <id>http://itsatype.github.io/blog/2016/03/15/magic-in-macros-and-metaprogramming</id>
