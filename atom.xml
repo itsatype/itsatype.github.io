@@ -2,23 +2,113 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Leah's Loop]]></title>
-  <link href="http://itsatype.github.io/atom.xml" rel="self"/>
-  <link href="http://itsatype.github.io/"/>
-  <updated>2016-04-09T16:54:51-04:00</updated>
-  <id>http://itsatype.github.io/</id>
+  <link href="http://http://itsatype.github.io/atom.xml" rel="self"/>
+  <link href="http://http://itsatype.github.io/"/>
+  <updated>2016-04-09T17:43:10-04:00</updated>
+  <id>http://http://itsatype.github.io/</id>
   <author>
     <name><![CDATA[Leah]]></name>
     
   </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
+    
+    <title type="html"><![CDATA[Pair Programming]]></title>
+    <link href="http://itsatype.github.io/blog/2016/04/09/pair-programming/"/>
+    
+    <updated>2016-04-09T00:00:00-04:00</updated>
+    <id>http://http://itsatype.github.io/blog/2016/04/09/pair-programming</id>
+    
+      <content type="html"><![CDATA[<h2>Programming in Paris..um, I meant pairs.</h2>
+
+<p><em>That was me fumbling because I was typing while pair programming, which often leads me to erratic typing and the inevitable ensuing typos.</em></p>
+
+<p>Pair Programming is an Agile Software Development practice where two (or sometimes three or four, if you’re working on a group project together at Flatiron School), program together.  Generally, there is one person that is typing at the keyboard, referred to as the driver, and the other is observing and offering input and direction, known as the navigator.</p>
+
+<p><img src="https://rickischultz.files.wordpress.com/2010/02/kirk-spock-mccoy.jpg"></p>
+
+<p>The touted benefits of pair programming are enormous.  Most notably, pair programmers spend about 15% more time on programs than solo programmers, but the resulting code has about 15% fewer defects and bugs.
+The transfer of knowledge between pair programmers is immediate, from tips on programming language rules to overall skill, or just a handy keyboard shortcut.
+In a survey of pair programmers, 96% of them stated that they enjoyed their work more than when they programmed alone, and that they were more confident in their solutions when they pair programmed.</p>
+
+<p>Yet, though it’s been over two months that I’ve been pair programming, I still feel like I haven’t gotten the hang of the  different roles yet.  What is required of the navigator? Do they just watch as the other person types, and only jump in if they are directly asked a question? When is it okay to intervene if you think something is wrong? How long do you wait before pointing out a typo? If you aren’t following the driver’s thought process, how do you rectify that?</p>
+
+<p>What about the driver? Are you to always take the navigator’s suggestions and implement them? What if it takes you down a rabbit hole? Should you just be typing whatever the navigator dictates? How do you ensure that your partner isn’t just watching as you type, but instead is engaged in your thought process?</p>
+
+<p>So I’m going to attempt and break this down, so it’s clear what each role is supposed to be doing, and what some of the best practices are, so that everyone gets the most out of the experience as possible.</p>
+
+<p><img src="http://assets.amuniversal.com/2607a8e06d5901301d7d001dd8b71c47"></p>
+
+<p>First, let’s look at some of the no-nos while pairing.</p>
+
+<h2>Pairing Smells</h2>
+
+<ul>
+<li><p>Unequal Access to Keyboard: Both Pair Programmers should be able to reach the keyboard and see the screen equally well.</p></li>
+<li><p>Worker/Rester: Both the driver and navigator should actively be participating at all times.  If one needs a rest, maybe take a break, or it&rsquo;s time to switch roles.</p></li>
+<li><p>Silence: At least the driver, but even the navigator, are expected to keep up a running commentary at all times, so that everyone stays in the loop. Pair programming is about &ldquo;programming out loud”. If someone is silent too long, feel free to intervene.</p></li>
+<li><p>Debating: Debates lasting longer than a few minutes are pointless.  Rather than arguing about it, the better solution is for one or the other to quit telling and start showing how they want the code to work. Arguing in code is better than arguing about code.</p></li>
+</ul>
+
+
+<p>Now for some tips in each of the roles.</p>
+
+<h2>The Driver:</h2>
+
+<ul>
+<li><p>When you start pairing, expect to feel clumsy and fumble-fingered as you drive. You’ll make typos and perhaps go at a faster or slower pace than you normally would while coding solo.  Things will greatly improve with time, and come naturally.  Just get it out of the way.</p></li>
+<li><p>You may feel or realize that the navigator sees ideas and expected problems sooner than you do. And they very well might.  This is because they have more time to think than the driver does.  That is their role.</p></li>
+<li><p>As you drive, think out loud.  This helps the navigator follow your thought process and understand your decision to go a certain direction.  It’s easier to follow the code if you are the one doing the typing.  Keep them in the loop.</p></li>
+<li><p>If the navigator suggests trying something out, and it won’t take too long to implement their idea, even if you don’t think it will work, try it.  You’ll never know otherwise.</p></li>
+<li><p>If the navigator is more experienced, respect that.  It’s all about the learning experience, so it only means you have more to gain.  Accept their input and implement their suggestions.  Learn from their insights and thought process.</p></li>
+<li><p>Conversely, if the navigator is dictating code word for word, stop and listen. This will ensure that they tell you more of their plan than what syntax to type, so you can gain an understanding of what they are trying to implement.</p></li>
+<li><p>Don’t drive too long.  Ask the other person to drive!</p></li>
+</ul>
+
+
+<h2>The Navigator:</h2>
+
+<ul>
+<li><p>Let the driver finish writing a complete line of code before pointing out an error.  They may sometimes be aware of their mistake, but are waiting until they finish typing to go back and fix it.  A good navigator knows when to wait a little bit before pointing out a missing semicolon somewhere, and will do it when there’s a natural pause in the driving.</p></li>
+<li><p>Expect to feel like you want to step in and take the keyboard away from your partner. It’s so much easier than watching them fumble their way to something.  Relax, you’ll usually learn something by observing the other’s thought process.</p></li>
+<li><p>It’s easy to get carried away and treat the driver as an order-taker, especially if you are more experienced in the field. Try to avoid doing this by allowing the driver to go at it when they can, and offer direction when they get stuck on how to proceed.</p></li>
+<li><p>Pay attention. It’s easy to lose focus when you aren’t the driver. When you pay attention, talk, and listen, you become engrossed in the work.  If you do lose focus, mention this right away and be brought up to speed.  Don’t wait.</p></li>
+<li><p>The person who knows less about the system or language should do most of the driving, to ensure that they stay engaged, and that the knowledge gap doesn’t widen. You learn more actively than passively.</p></li>
+<li><p>If the driver is more familiar with the code or language, they might be going full speed ahead, leaving you to simply watch as a solution emerges.  In order to stay more involved, ask them to slow down and explain.  This might also be a good time to ask to drive.</p></li>
+<li><p>When a question arises, take a moment to look up the answer (I’m looking at you, StackOverflow), while the driver continues to type.  If the research requires more than a few minutes, investigate the solution together. Sometimes the best way to do so is to split up and then come back together to share what you’ve both learned.</p></li>
+<li><p>Ask to drive!</p></li>
+</ul>
+
+
+<p>Lastly, whether you’re a driver or navigator, if you&rsquo;re confused about something, <strong>ask questions</strong>.  The ensuing discussion may enlighten your partner as much as it does you.  Often, forcing someone to explain something and break it down allows them to understand the concept on a whole new level, and see it in a different light.</p>
+
+<p>It is possible that one partner knows more than the other or that there are multiple ways to achieve the same results. However, no matter the skill level, from my experience, there is always something to learn when pairing.</p>
+
+<p><img src="https://hot4spock.files.wordpress.com/2009/05/naked2.png"></p>
+
+<h4><em>“'If you want to go fast, go alone. If you want to go far, go together"</em></h4>
+
+<p>Resources:</p>
+
+<p><a href="http://agileinaflash.blogspot.com/2009/02/pair-programming-smells.html">http://agileinaflash.blogspot.com/2009/02/pair-programming-smells.html</a></p>
+
+<p><a href="http://www.amazon.com/Pair-Programming-Illuminated-Laurie-Williams/dp/0201745763">Pair Programming Illuminated</a></p>
+
+<p>To become a better pair programmer, also read about: <a href="http://blog.codinghorror.com/the-ten-commandments-of-egoless-programming/">Egoless Programming</a></p>
+]]></content>
+      
+  </entry>
+  
+  <entry>
+    
     <title type="html"><![CDATA[Stay weird, JS]]></title>
     <link href="http://itsatype.github.io/blog/2016/03/27/stay-weird/"/>
+    
     <updated>2016-03-27T14:54:13-04:00</updated>
-    <id>http://itsatype.github.io/blog/2016/03/27/stay-weird</id>
-    <content type="html"><![CDATA[<h2>Why the Wat</h2>
+    <id>http://http://itsatype.github.io/blog/2016/03/27/stay-weird</id>
+    
+      <content type="html"><![CDATA[<h2>Why the Wat</h2>
 
 <p><img src="http://itsatype.github.io/images/what.gif" width="300"></p>
 
@@ -156,14 +246,18 @@
 
 <p><img src="http://itsatype.github.io/images/bowties.png" width="500"></p>
 ]]></content>
+      
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[That’s so meta]]></title>
     <link href="http://itsatype.github.io/blog/2016/03/15/magic-in-macros-and-metaprogramming/"/>
+    
     <updated>2016-03-15T00:24:19-04:00</updated>
-    <id>http://itsatype.github.io/blog/2016/03/15/magic-in-macros-and-metaprogramming</id>
-    <content type="html"><![CDATA[<h2>Magic in Macros &amp; Metaprogramming</h2>
+    <id>http://http://itsatype.github.io/blog/2016/03/15/magic-in-macros-and-metaprogramming</id>
+    
+      <content type="html"><![CDATA[<h2>Magic in Macros &amp; Metaprogramming</h2>
 
 <p><img src="http://itsatype.github.io/images/magic.png" width="600"></p>
 
@@ -349,14 +443,18 @@ Because we define it dynamically, we can also say has_many :methods, or anything
 
 <p><img src="http://itsatype.github.io/images/i_love_magic.gif" width="600"></p>
 ]]></content>
+      
   </entry>
   
   <entry>
+    
     <title type="html"><![CDATA[Pipes]]></title>
     <link href="http://itsatype.github.io/blog/2016/02/13/my-first-post-on-octopress/"/>
+    
     <updated>2016-02-13T00:00:33-05:00</updated>
-    <id>http://itsatype.github.io/blog/2016/02/13/my-first-post-on-octopress</id>
-    <content type="html"><![CDATA[<p><img src = "../images/pipes.png" width = "500px;" /></p>
+    <id>http://http://itsatype.github.io/blog/2016/02/13/my-first-post-on-octopress</id>
+    
+      <content type="html"><![CDATA[<p><img src = "../images/pipes.png" width = "500px;" /></p>
 
 <p>The double pipes, also known as a short circuit operator because it will only evaluate the second argument if the first argument is not sufficient to determine the value of the expression, is a great tool for writing concise code.   In addition to being the logical &ldquo;or&rdquo; operator, they&rsquo;re handy when used with a method which may evaluate to nil, such as find, or when used with the assignment operator, the &ldquo;or equals&rdquo;.
 For me, they&rsquo;ve been like that cool kid that you see around, but don&rsquo;t think you can ever relate to. But then you get acquainted, speak to them once or twice, finally get to know them, and they&rsquo;re suddenly someone you love having around.</p>
@@ -474,6 +572,7 @@ For me, they&rsquo;ve been like that cool kid that you see around, but don&rsquo
 
 <p><img src = "../images/time_up.png" width="400px;" /></p>
 ]]></content>
+      
   </entry>
   
 </feed>

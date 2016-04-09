@@ -1,13 +1,11 @@
 
 <!DOCTYPE HTML>
-<html>
+<html lang="en-GB">
 <head>
-	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
-	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<meta charset="utf-8">
 	<title>Category: &nbsp;  | Leah's Loop</title>
 
-<meta name="author" content="Leah"> 
+	<meta name="author" content="Leah">
 
 <meta name="description" content="Category: &nbsp;"> <meta name="keywords" content="">
 
@@ -17,125 +15,68 @@
 	<link rel="canonical" href="">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
-
-<script language="Javascript" type="text/javascript">
-$(document).ready(
-  function() {
-    (function($) {
-      $(".fancybox[data-content-id]").each(function() {
-        this.href = $(this).data('content-id');
-      });
-      $(".fancybox").fancybox({
-        beforeLoad: function() {
-          var el, 
-              id = $(this.element).data('title-id');
-
-          if (id) {
-            el = $('#' + id);
-
-            if (el.length) {
-              this.title = el.html();
-            }
-          }
-          if ($(this).data('content')) {
-            this.content = $(this).data('content');
-          }
-        },
-        helpers: {
-          title: {
-            type: 'inside'
-          }
-        }
-      });
-    })(jQuery);
-  }
-);
-</script>
-
 	
+
 </head>
 
 
 
 <body>
 	<header id="header" class="inner"><h1><a href="/">Leah's Loop</a></h1>
-<h4></h4>
-<nav id="main-nav"><ul>
+<span class="tagline"></span>
+<nav id="main-nav"><ul class="main-nav">
 	<li><a href="/">Blog</a></li>
 	<li><a href="/about">About</a></li>
-	<li><a href="/portfolio">Portfolio</a></li>
-	<li><a href="/archives">Archive</a></li>
+	<li><a href="/archives">Archives</a></li>
 </ul>
-</nav>
+</nav> 
 <nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul>
+ 	<div class="alignleft menu"> 
+ 		<a class="button">Menu</a> 
+ 		<div class="container"><ul class="main-nav">
 	<li><a href="/">Blog</a></li>
 	<li><a href="/about">About</a></li>
-	<li><a href="/portfolio">Portfolio</a></li>
-	<li><a href="/archives">Archive</a></li>
+	<li><a href="/archives">Archives</a></li>
 </ul>
-</div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="https://www.google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:itsatype.github.io">
-			</form>
-		</div>
-	</div>
-</nav>
+</div> 
+ 	</div> 
+ </nav> 
 
 
 </header>
 
 	<div id="content" class="inner">
 	
-
-
-	
-	
-	<section class="archives"><h1 class="year">2016</h1>
-
 <article>
-	<h2 class="title"><a href="/blog/2016/03/15/magic-in-macros-and-metaprogramming/">That’s so meta</a></h2>
+	<h3><a href="/blog/2016/03/15/magic-in-macros-and-metaprogramming/">That’s so meta</a></h3>
 	<div class="meta">
-		<div class="date">Mar 15</div>
-		
+		<span class="date">2016 Mar 15 </span>
+		<span class="tags">
 
-<div class="tags">
 
 	<a class='category' href='/blog/categories//'>&nbsp;</a>, <a class='category' href='/blog/categories/flatiron/'>flatiron</a>, <a class='category' href='/blog/categories/school/'>school</a>
 
-</div>
 
-
-	    
+</span>
 	</div>
 </article>
 
+
 </div>
-	<footer id="footer" class="inner">Copyright &copy; 2016
+	<footer id="footer" class="inner"><br>
+<br>
+<br>
+<br>
+&copy; 2013-2016
 
     Leah
 
-<br>
-Powered by Octopress.
 </footer>
 	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
+<script src="/javascripts/hyphenator.js"></script>
+
 
 
 
@@ -143,4 +84,10 @@ Powered by Octopress.
 
 
 </body>
+<script>
+  $(document).ready(function() {
+  // Make images center
+  $('p:has(img)').css('text-align', 'center');
+  });
+</script>
 </html>
