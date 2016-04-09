@@ -5,7 +5,7 @@ date: 2016-04-09 17:03:56 -0400
 comments: true
 categories: "Flatiron &nbsp; School" "Ruby" "Pair &nbsp; Programming"
 ---
-## Programming in Paris..um, I meant pairs.
+## Programming in Paris..um, I meant Pairs.
 *That was me fumbling because I was typing while pair programming, which often leads me to erratic typing and the inevitable ensuing typos.*
 
 
