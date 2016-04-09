@@ -4,7 +4,7 @@
   <title><![CDATA[Leah's Loop]]></title>
   <link href="http://http://itsatype.github.io/atom.xml" rel="self"/>
   <link href="http://http://itsatype.github.io/"/>
-  <updated>2016-04-09T17:57:16-04:00</updated>
+  <updated>2016-04-09T17:58:52-04:00</updated>
   <id>http://http://itsatype.github.io/</id>
   <author>
     <name><![CDATA[Leah]]></name>
@@ -28,9 +28,14 @@
 
 <p><img src="https://rickischultz.files.wordpress.com/2010/02/kirk-spock-mccoy.jpg"></p>
 
-<p>The touted benefits of pair programming are enormous.  Most notably, pair programmers spend about 15% more time on programs than solo programmers, but the resulting code has about 15% fewer defects and bugs.
-The transfer of knowledge between pair programmers is immediate, from tips on programming language rules to overall skill, or just a handy keyboard shortcut.
-In a survey of pair programmers, 96% of them stated that they enjoyed their work more than when they programmed alone, and that they were more confident in their solutions when they pair programmed.</p>
+<p>The touted benefits of pair programming are enormous.  Most notably:</p>
+
+<ol>
+<li>Pair programmers spend about 15% more time on programs than solo programmers, but the resulting code has about 15% fewer defects and bugs.</li>
+<li>The transfer of knowledge between pair programmers is immediate, from tips on programming language rules to overall skill, or just a handy keyboard shortcut.</li>
+<li>In a survey of pair programmers, 96% of them stated that they enjoyed their work more than when they programmed alone, and that they were more confident in their solutions when they pair programmed.</li>
+</ol>
+
 
 <p><img src="http://dsouthard.github.io/CSCI5828_PairProgramming/images/mistakes.png"></p>
 
