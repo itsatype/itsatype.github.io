@@ -15,11 +15,15 @@ Pair Programming is an Agile Software Development practice where two (or sometim
 {% img https://rickischultz.files.wordpress.com/2010/02/kirk-spock-mccoy.jpg %}
 
 
-The touted benefits of pair programming are enormous.  Most notably, pair programmers spend about 15% more time on programs than solo programmers, but the resulting code has about 15% fewer defects and bugs. 
-The transfer of knowledge between pair programmers is immediate, from tips on programming language rules to overall skill, or just a handy keyboard shortcut.
-In a survey of pair programmers, 96% of them stated that they enjoyed their work more than when they programmed alone, and that they were more confident in their solutions when they pair programmed.
+The touted benefits of pair programming are enormous.  Most notably:
+
+1. Pair programmers spend about 15% more time on programs than solo programmers, but the resulting code has about 15% fewer defects and bugs. 
+2. The transfer of knowledge between pair programmers is immediate, from tips on programming language rules to overall skill, or just a handy keyboard shortcut.
+3. In a survey of pair programmers, 96% of them stated that they enjoyed their work more than when they programmed alone, and that they were more confident in their solutions when they pair programmed.
+
 
 {% img http://dsouthard.github.io/CSCI5828_PairProgramming/images/mistakes.png %}
+
 
 Yet, though it’s been over two months that I’ve been pair programming, I still feel like I haven’t gotten the hang of the  different roles yet.  What is required of the navigator? Do they just watch as the other person types, and only jump in if they are directly asked a question? When is it okay to intervene if you think something is wrong? How long do you wait before pointing out a typo? If you aren’t following the driver’s thought process, how do you rectify that? 
 
