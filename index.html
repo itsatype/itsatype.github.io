@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE HTML>
 <html lang="en-GB">
 <head>
@@ -48,6 +48,147 @@
 </header>
 
 	<div id="content" class="inner">
+
+
+
+
+
+
+    <article class="post">
+	<header>
+		<h2 class="title">
+			
+			<a href="">Lists, Lists, Lists, and IEnumerables.</a>
+			
+		</h2>
+		<div class="meta date">
+
+
+
+<time class='entry-date' datetime='2016-04-09T00:00:00-04:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span></time></div>
+	</header>
+	<div class="entry-content">
+
+<p>Recently I've had to make the switch from coding in Ruby to coding in C#.  And while a lot of the concepts stay the same, it takes some getting used to switching from a dynamically typed to a statically typed language.
+
+Let’s compare enumerables in both languages.  First, the basics:<br />
+
+enumerable
+adjective  enu•mer•a•ble \i-'n(y)üm-r?-b?l, -'n(y)ü-m?-\
+
+Definition of enumerable
+:  countable
+
+
+So, in simplest terms, an enumerable in C# or in Ruby, is any collection that can be 'counted', or as is more often the case when programming, can be iterated over.</br />
+
+
+So whether it's the .each in Ruby or the foreach in C#, they both iterate over a collection, such as an array, list, or hash.  And while the concept of enumerators are the same, C# has multiple types which seemingly do the same thing.  There are Arrays, Lists, IEnumerables, and IQueryables. Of course, in most cases there is one that is best for the job.  Because we’ve all got our time to shine.
+I will attempt to explain the nuances of each, and which type is most suited for which case.
+
+A C# List is simply an Array that can be resized, and offers more functionality.  But then C# also has an IEnumerable.  It looks like a List, it acts like a List, but it isn't a List.  To be fair, it doesn't act exactly like a list, but it's also used as a collection that can be iterated over.  So what are the differences, and when is it best to use which?
+
+In summary, it is a C# interface for any collection that can be enumerated using a foreach statement.  IEnumerable is an interface whereas List is a concrete C# class.  
+
+If you look at the documentation for an IEnumerable, it simply contains a single method: 
+
+
+public interface IEnumerable
+{
+    IEnumerator GetEnumerator();
+}
+
+This is because the GetEnumerator method must return an instance of an object of a class which implements the IEnumerator interface. 
+So when using foreach, if the class contains, for example, a List, we use the List's GetEnumerator method.  
+In summary, IEnumerable describes behavior, while List is an implementation of that behavior. 
+
+So which do we use? That depends.   One important difference that IEnumerable is read-only and List is not.  So if you are iterating and would like the ability to make permanent 
+changes and alter the collection, you will need a List. If you just need to read, sort, or filter your collection, IEnumerable is sufficient for that purpose.
+
+When using Linq to select or query your database, should the return type be an IEnumerable or List?
+
+Because Linq doesn't generate the SQL to query the database until you enumerate it, it's best to use IEnumerable, because by only specifying the behavior, instead of the actual List you give the compiler a chance to defer work until later, possibly optimizing the program.  For example, it might pull only 10 rows at a time, or cache the data, making the program more efficient.  
+
+Consider this:
+
+public IEnumerable<Books> AllHumor()
+{
+    return from book in BookCase.Books
+           where book.genre.Humor == true
+           select book;
+}
+
+public IEnumerable<Books> Fiction(IEnumerable<Books> sample)
+{
+    return from book in sample
+           where book.Category == "Fiction"
+           select book;
+}
+
+public IEnumerable<Books> Biography(IEnumerable<Books> sample)
+{
+    return from book in sample
+           where book.Category == "Biography"
+           select book;
+}
+
+var FunnyFiction = Fiction(AllHumor());
+var FunnyBios = Biography(AllHumor());
+
+However, there are always exceptions to prove the rule.  It isn’t necessarily always better to be using an IEnumerable.  If you want to prevent a query from being executed more than once, a List is obviously more efficient.
+In the above, FunnyFiction and FunnyBios get converted into single SQL queries each, and the database only returns the rows that are relevant.
+ But if we had returned a List from AllHumor(), then it may run slower because the database could return far more data than is actually needed, and we waste cycles doing the filtering in the client.
+
+Therefore, it may be better to defer converting your query to a list until the very end, so if we’re going to enumerate through FunnyFiction and FunnyBios multiple times, it’s best to do this: 
+List<Animals> Leopards = Feline(AllSpotted()).ToList();
+List<Animals> Hyenas = Canine(AllSpotted()).ToList();
+
+
+
+<h2>Moving on…</h2>
+
+Wait a minute. Now there's also IQueryables.  
+
+If we look at the MSDN Documentation, we can see that IQueryable inherits from the IEnumerable interface.
+
+public interface IQueryable : IEnumerable
+
+So then how do they differ?  
+The primary difference between them is that an IEnumerable executes a select query on the server side, loads the data into memory on the client side and only then filters the data. That means it’s doing more work by filtering after loading the data into memory, thus making it less efficient.
+An IQueryable, on the other hand, executes a select query on the server side with all the filters, while querying the databaseThat means it’s doing less work, making it more efficient.  And who doesn’t love that.  Less work, I mean.
+
+Furthermore, if you further refine your query on an IQueryable, that query will be executed in the database, if possible.  In the case of an IEnumerable, it will be Linq-to-object first, and all objects from the original query will have to be loaded into memory from the database.
+
+This is quite an important distinction, and using an IQueryable will often save you from returning too many rows from the database. 
+
+And now we know everything.  EVERYTHING. iPods and iPads explained next.</p>
+
+<h4><em>“'If you want to go fast, go alone. If you want to go far, go together"</em></h4>
+
+<p>Resources:</p>
+
+http://blog.falafel.com/understanding-ienumerable-iqueryable-c/<br />
+http://www.codeproject.com/Articles/732425/IEnumerable-Vs-IQueryable<br />
+http://www.claudiobernasconi.ch/2013/07/22/when-to-use-ienumerable-icollection-ilist-and-list/<br />
+
+		
+	</div>
+
+
+	
+	</article>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <article class="post">
