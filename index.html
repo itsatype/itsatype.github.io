@@ -102,8 +102,8 @@ I will attempt to explain the nuances of each, and which type is most suited for
 So when using foreach, if the class contains, for example, a List, we use the List's GetEnumerator method.  
 In summary, IEnumerable describes behavior, while List is an implementation of that behavior. </p>
 
-<p>So which do we use? That depends.   One important difference that IEnumerable is read-only and List is not.  So if you are iterating and would like the ability to make permanent 
-changes and alter the collection, you will need a List. If you just need to read, sort, or filter your collection, IEnumerable is sufficient for that purpose.</p>
+<p>So which do we use? That depends.   One crucial difference is that IEnumerable is read-only whereas List is not.  So if you are iterating and would like the ability to make permanent 
+changes and change the collection, you will need a List. But if you just need to read, sort, or filter the collection, an IEnumerable is sufficient.</p>
 
 <p>When using Linq to select or query your database, should the return type be an IEnumerable or List?  Because Linq doesn't generate the SQL to query the database until you enumerate it, it's best to use IEnumerable, because by only specifying the behavior, instead of the actual List you give the compiler a chance to defer work until later, possibly optimizing the program.  For example, it might pull only 10 rows at a time, or cache the data, making the program more efficient.</p>
 
@@ -128,17 +128,13 @@ If we look at the MSDN Documentation, we can see that IQueryable inherits from t
 <p>Furthermore, if you further refine your query on an IQueryable, that query will be executed in the database, if possible.  In the case of an IEnumerable, it will be Linq-to-object first, and all objects from the original query will have to be loaded into memory from the database.<br />
 This is quite an important distinction, and using an IQueryable will often save you from returning too many rows from the database. </p>
 
-And now we know everything.  EVERYTHING. iPods and iPads explained next.
 
-
-
-<h4>And now we know everything.  EVERYTHING. iPods and iPads explained next.</h4>
+<h4><em>And now we know everything.  EVERYTHING. iPods and iPads explained next.</em></h4>
 
 <p>Resources:</p>
 
-<p><a href="http://blog.falafel.com/understanding-ienumerable-iqueryable-c/">IEnumerables vs IQueryables</a></p>
-
-<p><a href="http://stackoverflow.com/questions/3628425/ienumerable-vs-list-what-to-use-how-do-they-work">IEnumerables vs Lists</a></p>
+<p><a href="http://blog.falafel.com/understanding-ienumerable-iqueryable-c/">IEnumerables vs IQueryables</a><br />
+<a href="http://stackoverflow.com/questions/3628425/ienumerable-vs-list-what-to-use-how-do-they-work">IEnumerables vs Lists</a></p>
 
 
 		
