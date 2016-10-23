@@ -2,19 +2,30 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Leah's Loop]]></title>
+<<<<<<< HEAD
   <link href="http://itsatype.github.io/atom.xml" rel="self"/>
   <link href="http://itsatype.github.io/"/>
   <updated>2016-10-23T14:20:56-04:00</updated>
   <id>http://itsatype.github.io/</id>
+=======
+  <link href="http://http://itsatype.github.io/atom.xml" rel="self"/>
+  <link href="http://http://itsatype.github.io/"/>
+  <updated>2016-04-09T17:58:52-04:00</updated>
+  <id>http://http://itsatype.github.io/</id>
+>>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
   <author>
     <name><![CDATA[Leah]]></name>
     
   </author>
+<<<<<<< HEAD
   <generator uri="http://octopress.org/">Octopress</generator>
+=======
+>>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
 
   
   <entry>
     
+<<<<<<< HEAD
     <title type="html"><![CDATA[How to: Access Adwords API &amp;&amp; Parse the Response]]></title>
     <link href="http://itsatype.github.io/blog/2016/10/23/how-to-access-the-adwords-api-and-and-parse-the-response/"/>
     
@@ -249,13 +260,21 @@ First, we create an Adwords class, which we initialize with the JSON Data we rec
   
   <entry>
     
+=======
+>>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
     <title type="html"><![CDATA[Pair Programming]]></title>
     <link href="http://itsatype.github.io/blog/2016/04/09/pair-programming/"/>
     
     <updated>2016-04-09T00:00:00-04:00</updated>
+<<<<<<< HEAD
     <id>http://itsatype.github.io/blog/2016/04/09/pair-programming</id>
     
     <content type="html"><![CDATA[<h2>Programming in Paris..um, I meant Pairs.</h2>
+=======
+    <id>http://http://itsatype.github.io/blog/2016/04/09/pair-programming</id>
+    
+      <content type="html"><![CDATA[<h2>Programming in Paris..um, I meant Pairs.</h2>
+>>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
 
 <p><em>That was me fumbling because I was typing while pair programming, which often leads me to erratic typing and the inevitable ensuing typos.</em></p>
 
@@ -339,7 +358,11 @@ First, we create an Adwords class, which we initialize with the JSON Data we rec
 
 <p>To become a better pair programmer, also read about: <a href="http://blog.codinghorror.com/the-ten-commandments-of-egoless-programming/">Egoless Programming</a></p>
 ]]></content>
+<<<<<<< HEAD
     
+=======
+      
+>>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
   </entry>
   
   <entry>
@@ -348,9 +371,15 @@ First, we create an Adwords class, which we initialize with the JSON Data we rec
     <link href="http://itsatype.github.io/blog/2016/03/27/stay-weird/"/>
     
     <updated>2016-03-27T14:54:13-04:00</updated>
+<<<<<<< HEAD
     <id>http://itsatype.github.io/blog/2016/03/27/stay-weird</id>
     
     <content type="html"><![CDATA[<h2>Why the Wat</h2>
+=======
+    <id>http://http://itsatype.github.io/blog/2016/03/27/stay-weird</id>
+    
+      <content type="html"><![CDATA[<h2>Why the Wat</h2>
+>>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
 
 <p><img src="http://itsatype.github.io/images/what.gif" width="300"></p>
 
@@ -488,7 +517,11 @@ First, we create an Adwords class, which we initialize with the JSON Data we rec
 
 <p><img src="http://itsatype.github.io/images/bowties.png" width="500"></p>
 ]]></content>
+<<<<<<< HEAD
     
+=======
+      
+>>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
   </entry>
   
   <entry>
@@ -497,9 +530,15 @@ First, we create an Adwords class, which we initialize with the JSON Data we rec
     <link href="http://itsatype.github.io/blog/2016/03/15/magic-in-macros-and-metaprogramming/"/>
     
     <updated>2016-03-15T00:24:19-04:00</updated>
+<<<<<<< HEAD
     <id>http://itsatype.github.io/blog/2016/03/15/magic-in-macros-and-metaprogramming</id>
     
     <content type="html"><![CDATA[<h2>Magic in Macros &amp; Metaprogramming</h2>
+=======
+    <id>http://http://itsatype.github.io/blog/2016/03/15/magic-in-macros-and-metaprogramming</id>
+    
+      <content type="html"><![CDATA[<h2>Magic in Macros &amp; Metaprogramming</h2>
+>>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
 
 <p><img src="http://itsatype.github.io/images/magic.png" width="600"></p>
 
@@ -685,7 +724,11 @@ Because we define it dynamically, we can also say has_many :methods, or anything
 
 <p><img src="http://itsatype.github.io/images/i_love_magic.gif" width="600"></p>
 ]]></content>
+<<<<<<< HEAD
     
+=======
+      
+>>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
   </entry>
   
   <entry>
@@ -694,9 +737,15 @@ Because we define it dynamically, we can also say has_many :methods, or anything
     <link href="http://itsatype.github.io/blog/2016/02/13/my-first-post-on-octopress/"/>
     
     <updated>2016-02-13T00:00:33-05:00</updated>
+<<<<<<< HEAD
     <id>http://itsatype.github.io/blog/2016/02/13/my-first-post-on-octopress</id>
     
     <content type="html"><![CDATA[<p><img src = "../images/pipes.png" width = "500px;" /></p>
+=======
+    <id>http://http://itsatype.github.io/blog/2016/02/13/my-first-post-on-octopress</id>
+    
+      <content type="html"><![CDATA[<p><img src = "../images/pipes.png" width = "500px;" /></p>
+>>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
 
 <p>The double pipes, also known as a short circuit operator because it will only evaluate the second argument if the first argument is not sufficient to determine the value of the expression, is a great tool for writing concise code.   In addition to being the logical &ldquo;or&rdquo; operator, they&rsquo;re handy when used with a method which may evaluate to nil, such as find, or when used with the assignment operator, the &ldquo;or equals&rdquo;.
 For me, they&rsquo;ve been like that cool kid that you see around, but don&rsquo;t think you can ever relate to. But then you get acquainted, speak to them once or twice, finally get to know them, and they&rsquo;re suddenly someone you love having around.</p>
@@ -814,7 +863,14 @@ For me, they&rsquo;ve been like that cool kid that you see around, but don&rsquo
 
 <p><img src = "../images/time_up.png" width="400px;" /></p>
 ]]></content>
+<<<<<<< HEAD
     
   </entry>
   
 </feed>
+=======
+      
+  </entry>
+  
+</feed>
+>>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
