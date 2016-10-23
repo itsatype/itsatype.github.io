@@ -31,7 +31,7 @@ Okay, let's do this.
 
 ### 2. Client Customer Id
 	
-  This will simply be the Google Adwords Client for which you would like to request data.  Easy breezy.
+  This will simply be the Google Adwords Client for which you would like to request data.
   
 {% img /images/adwords_account.png %}
 
@@ -40,7 +40,7 @@ Okay, let's do this.
 > OAuth allows notifying a resource provider (e.g. Google Adwords) that the resource owner (e.g. your Adwords Account ) grants permission to a > third-party (e.g. your Application) access to their information (e.g. the list of your keywords).
 
 #### Now for OAuth2
-> OAuth 2.0 focuses on client developer simplicity while providing specific authorization flows for web applications, desktop applications, and mobile phones. 
+> OAuth 2.0 is the next evolution of the OAuth protocol. It focuses on client developer simplicity while providing specific authorization flows for web applications, desktop applications, and mobile phones. 
 [Source](https://oauth.net/2/)
 
 Erm, okay.  Bigger and better, we get it.  But what does that mean? One improvement you may have noticed is that it allows support for non-browser applications, such as mobile apps.  For example, in OAuth 1.0, mobile apps had to direct the user to their browser, authenticate with the service, and copy the token from the service back to the app. 
