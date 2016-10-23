@@ -97,7 +97,7 @@
 
 
   <div class="entry-content"><p>When accessing APIs, I find it usually goes one of two ways:  Surprisingly effortless, or unexpectedly painful.  This isn’t necessarily because the documentation or the API structure is lacking, just that sometimes you run into unaccounted errors or difficulties.<br/>
-Recently, I’ve attempted to access the Google Adwords API to automate reports.  This post will serve as a tutorial for A.  How to access the  Adwords API (using OAuth2 and the Adwords Client Library)  B. Parsing the JSON response to extract useful data (using Python).</p>
+Recently, I’ve attempted to access the Google Adwords API to automate reports.  This post will serve as a tutorial for A.  How to access the  Adwords API (using OAuth2 and the Adwords Client Library)  B. Parsing the JSON response and manipulating it into useful data (using Python).</p>
 
 <h2>Accessing the Adwords API</h2>
 
@@ -119,7 +119,7 @@ Recently, I’ve attempted to access the Google Adwords API to automate reports.
 
 <p>  <img src="http://www.bobservation.com/wp-content/uploads/2013/02/Coins.png"></p>
 
-<p>Okay, let&rsquo;s do this.</p>
+<p>Okay, now let&rsquo;s do this.</p>
 
 <h3>1. Developer Token</h3>
 
@@ -128,7 +128,7 @@ Recently, I’ve attempted to access the Google Adwords API to automate reports.
 
 <h3>2. Client Customer Id</h3>
 
-<p>  This will simply be the Google Adwords Client for which you would like to request data.  Easy breezy.</p>
+<p>  This will simply be the Google Adwords Client for which you would like to request data.</p>
 
 <p><img src="/images/adwords_account.png"></p>
 
@@ -136,16 +136,16 @@ Recently, I’ve attempted to access the Google Adwords API to automate reports.
 
 <h4>A word on OAuth</h4>
 
-<blockquote><p>OAuth allows notifying a resource provider (e.g. Google Adwords) that the resource owner (e.g. your Adwords Account ) grants permission to a > third-party (e.g. your Application) access to their information (e.g. the list of your keywords).</p></blockquote>
+<blockquote><p>OAuth allows notifying a resource provider (e.g. Google Adwords) that the resource owner (e.g. your Adwords Account ) grants permission to a third-party (e.g. your Application) access to their information (e.g. the list of your keywords).</p></blockquote>
 
 <h4>Now for OAuth2</h4>
 
-<blockquote><p>OAuth 2.0 focuses on client developer simplicity while providing specific authorization flows for web applications, desktop applications, and mobile phones.
+<blockquote><p>OAuth 2.0 is the next evolution of the OAuth protocol.  It focuses on client developer simplicity while providing specific authorization flows for web applications, desktop applications, and mobile phones.
 <a href="https://oauth.net/2/">Source</a></p></blockquote>
 
-<p>Erm, okay.  Bigger and better, we get it.  But what does that mean? One improvement you may have noticed is that it allows support for non-browser applications, such as mobile apps.  For example, in OAuth 1.0, mobile apps had to direct the user to their browser, authenticate with the service, and copy the token from the service back to the app.</p>
+<p>Okay, bigger and better, we get it.  But what does that mean? One improvement you may have noticed is that it allows support for non-browser applications, such as mobile apps.  For example, in OAuth 1.0, mobile apps had to direct the user to their browser, authenticate with the service, and copy the token from the service back to the app.</p>
 
-<p>Now that we&rsquo;ve established beneficial reasons to go through this arduous process, let&rsquo;s begin.</p>
+<p>Now that we&rsquo;ve established beneficial reasons to go through the process, here&rsquo;s how:</p>
 
 <p>Log in to the <a href="https://console.developers.google.com/apis/credentials">Google API Console Credentials Page</a></p>
 
@@ -156,7 +156,7 @@ Recently, I’ve attempted to access the Google Adwords API to automate reports.
 </ol>
 
 
-<p>The OAuth2 client ID and client secret appear.  Voila.  3 down, 2 more to go.  Inhale.</p>
+<p>The OAuth2 client ID and client secret appear. That&rsquo;s three down, two more to go.</p>
 
 <h3>4. Setting up the Client Library and adding your tokens.</h3>
 
@@ -197,7 +197,7 @@ Run from your terminal: <code>ruby get_campaigns.rb</code></p>
 
 <p>Now that we’ve received our JSON response from the Adwords API, we’d like to start interacting with out data.</p>
 
-<p>First, A word about JSON:</p>
+<p>First, What Is JSON?:</p>
 
 <blockquote><p>JSON (JavaScript Object Notation) is a lightweight data-interchange format. It&rsquo;s easy for humans to read and write. It&rsquo;s easy for machines to parse and generate. JSON is a text format that is completely language independent. These properties make JSON an ideal data-interchange language.</p></blockquote>
 
@@ -307,12 +307,12 @@ First, we create an Adwords class, which we initialize with the JSON Data we rec
 <p>However, as we mentioned, parsing a format like JSON presents a bit of a problem, because anything could show up in the JSON body.  So before we sort the data, we want to ensure it&rsquo;s a number.
 <code>if type(data[criteria]).__name__ == 'int': keywords.append((keyword, data[criteria]))</code></p>
 
-<p><em>As a bonus: If we’d like to abstract the data so that our program will take a different action, depending on the data type, whether it is a list, dictionary, string, etc., we can do the following:</em></p>
+<p><em>As a bonus: If we’d like to abstract the data so that our program will take a different action, depending on the data type, whether it is a list, dictionary, string, etc., we can do this:</em></p>
 
 <script src="https://gist.github.com/itsatype/f7a47a443e813d4837f1881749465530.js"></script>
 
 
-<p>Takeaways: It&rsquo;s a step-by-step process getting up and running with the Adwords API.  But we can then do all this pretty cool stuff with the JSON response, which is pretty awesome.</p>
+<p>Takeaways: It&rsquo;s a step-by-step process getting up and running with the Adwords API.  But we can then process the JSON response however we&rsquo;d like, which is pretty awesome.</p>
 
 <h4><strong>Helpful Resources:</strong></h4>
 
