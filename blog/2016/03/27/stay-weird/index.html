@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Stay weird, JS - Leah's Loop</title>
+  <meta name="author" content="Leah">
+
+  
+  <meta name="description" content="Why the Wat Javascript is weird. There are some odd behaviors it exhibits, with strange outcomes. You can learn more about some of it’s oddities by &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://itsatype.github.io/blog/2016/03/27/stay-weird">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Leah's Loop" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner">
+	<div class="header-title"><a href="/">Leah's Loop</a></div>
+
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:itsatype.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+  
+    
+      <h1 class="entry-title">Stay Weird, JS</h1>
+    
+  
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-03-27T14:54:13-04:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Why the Wat</h2>
+
+<p><img src="/images/what.gif" width="300"></p>
+
+<p>Javascript is weird.  There are some odd behaviors it exhibits, with strange outcomes. You can learn more about some of it’s oddities by watching <a href="https://www.destroyallsoftware.com/talks/wat">this lightning talk</a> by Gary Bernhardt from CodeMash 2012.</p>
+
+<p>But hey, that’s enough trash talk.  In the spirit of giving the benefit of the doubt, let’s explore the reasons for some of its odd behavior. Maybe it&rsquo;s just having a bad day.  Maybe it was never loved as a child.  We don&rsquo;t know.</p>
+
+<p>First and foremost, we should know that the general rule in Javascript is that the plus operator can be used for the following:</p>
+
+<ol>
+<li>As an addition operator, operating on two numbers</li>
+<li>As a string concatenation operator, operating on two strings</li>
+<li>As a prefix operator, indicating a positive number, operating on a single number</li>
+</ol>
+
+
+<p> This means you can only add Numbers and Strings, so any time you are using the + operator and are trying to add other values, such as arrays or objects, Javascript will convert it to either a string or a number, first.</p>
+
+<ul>
+<li>Boolean, Null, and Undefined coerce to a number</li>
+<li>Objects and functions all coerce to a string</li>
+</ul>
+
+
+<p>Here we go.</p>
+
+<hr />
+
+<p><strong>Array + Array = Empty String</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">[]</span> <span class="o">+</span> <span class="p">[]</span> <span class="o">=</span> <span class="err">‘’</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Since our object is an array, and an array object has a valid toString() method on it, Javascript will try to convert it to a string by calling the object.toString().</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">[].</span><span class="nx">toString</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">=&gt;</span> <span class="err">‘’</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For arrays, this is the same as calling [ ].join(), which will also return an empty string.  Therefore, [] + [] is the concatenation of two empty strings, which will return a single empty string.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="err">‘’</span> <span class="o">+</span> <span class="err">‘’</span>
+</span><span class='line'>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="err">‘’</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next:</p>
+
+<p><strong>Array + Object = &lsquo;[object Object]’</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">[]</span> <span class="o">+</span> <span class="p">{}</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">]</span><span class="err">’</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Similar to the above, we already know Javascript will attempt to convert both to primitives.  It will return an empty string for the array.  Then, it will attempt to call the toString method on the right-hand side (RHS), which is our object.  However, {} does not implement a toString() method. However, all objects do inherit this method from Object.prototype, which, when calling toString() on Object, will return ‘object’, and the value of the object, as follows:</p>
+
+<ul>
+<li>If the value is undefined: &ldquo;[object Undefined]&rdquo;</li>
+<li>If the value is null “[object Null]</li>
+</ul>
+
+
+<p>Since an empty object is neither null, nor undefined, it will return ‘[object Object]’.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">String</span><span class="p">(</span> <span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="err">‘</span><span class="nx">bar</span><span class="err">’</span> <span class="p">}</span> <span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">=&gt;</span>  <span class="err">‘</span><span class="p">[</span><span class="nx">object</span> <span class="nb">Object</span><span class="p">]</span><span class="err">’</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So when concatenating ‘’ +  ‘[object Object]’, it will still return: &lsquo;[object Object]’</p>
+
+<p><strong>Object + Empty Arary = 0</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{}</span> <span class="o">+</span> <span class="p">[]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is where things start getting weird.  When coding in JS, we wrap our statements in curly braces, such as if and else, to indicate a code block. Generally speaking, if the { appears at the beginning of a statement it’s going to be interpreted as a code block, so it will simply look at the left-hand side (LHS) operand as an empty block of code.  That would mean the + appears as the beginning of the next statement, and it is interpreted as prefixing a positive number.  And an array, all together now, is coerced into an empty string.  Because of the + prefix, it will then convert that to a number.  What happens when we coerce an empty string to a number?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">Number</span><span class="p">(</span><span class="err">“”</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We’ve got this.</p>
+
+<p><strong>Object + Object = Not A Number</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{}</span> <span class="o">+</span> <span class="p">{}</span> <span class="o">=</span> <span class="kc">NaN</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This should be easy, seeing as we already know Javascript’s quirks.  It will interpret the LHS as an empty code block. It will then try to convert the RHS, by first returning ‘[object Object]’, if you remember that.  Then, since it sees + as a prefix + operator indicating a positive number, it will attempt to convert it to a number.  What happens when we convert strings to numbers?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">Number</span><span class="p">(</span><span class="err">“</span><span class="nx">Foo</span><span class="err">”</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">=&gt;</span> <span class="kc">NaN</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<p>And voila, there we have it.</p>
+
+<p>Okay, so maybe Javascript is still a little weird. But weird is good.  At least that&rsquo;s what my mother used to tell me.</p>
+
+<h4><em>“Be weird. Be random. Be who you are.&ldquo;</em></h4>
+
+<p>&ndash; <em>C.S. Lewis</em></p>
+
+<p><img src="/images/bowties.png" width="500"></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leah</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-03-27T14:54:13-04:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/flatiron-school/'>flatiron&nbsp;school</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://itsatype.github.io/blog/2016/03/27/stay-weird/" data-via="" data-counturl="http://itsatype.github.io/blog/2016/03/27/stay-weird/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/03/15/magic-in-macros-and-metaprogramming/" title="Previous Post: That’s so meta">&laquo; That’s so meta</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2016/04/09/pair-programming/" title="Next Post: Pair Programming">Pair Programming &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/23/how-to-access-the-adwords-api-and-and-parse-the-response/">How to: Access Adwords API &amp;&amp; Parse the Response</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/04/09/pair-programming/">Pair Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/27/stay-weird/">Stay weird, JS</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/15/magic-in-macros-and-metaprogramming/">That’s so meta</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/02/13/my-first-post-on-octopress/">Pipes</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 -  Leah <br/>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> + <a href="https://github.com/ioveracker/mnml">mnml</a>.
+	  
+  </span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

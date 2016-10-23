@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: school | Leah's Loop]]></title>
+  <link href="http://itsatype.github.io/blog/categories/school/atom.xml" rel="self"/>
+  <link href="http://itsatype.github.io/"/>
+  <updated>2016-10-23T14:20:56-04:00</updated>
+  <id>http://itsatype.github.io/</id>
+  <author>
+    <name><![CDATA[Leah]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[That’s so meta]]></title>
+    <link href="http://itsatype.github.io/blog/2016/03/15/magic-in-macros-and-metaprogramming/"/>
+    <updated>2016-03-15T00:24:19-04:00</updated>
+    <id>http://itsatype.github.io/blog/2016/03/15/magic-in-macros-and-metaprogramming</id>
+    <content type="html"><![CDATA[<h2>Magic in Macros &amp; Metaprogramming</h2>
+
+<p><img src="/images/magic.png" width="600"></p>
+
+<p>I recently began learning Ruby on Rails, and my predominant thought was ‘Is this magic?&lsquo;. Rails incorporates the use of ‘macros’, which are simple yet powerful statements that run many lines of code.  Some of the more common ones are ‘resources’, ‘has_many / belongs_to’, and ‘accepts nested attributes’.  And while a magician never reveals his tricks, macros are simply Ruby code. Ruby&rsquo;s flexible approach to syntax coupled with Rail’s ‘convention over configuration’ just makes this seem cooler that it actually is. AKA magic.</p>
+
+<p>Using metaprogramming, Rails writes a lot of the methods for us.  And because Ruby is a dynamic language (versus a statically typed language),  it gives you the freedom to define methods and even classes during runtime.</p>
+
+<p>A dynamic language, in a nutshell, allows you to set the same variable to an integer, string, hash, etc.  It allows you to do the following:</p>
+
+<pre><code class="ruby">var something = 1;
+something = "Foo";
+something = {foo =&gt; ‘bar’}
+</code></pre>
+
+<p>Here, I will attempt to break down the ActiveRecord has_many macro and explain how it works under the hood.</p>
+
+<pre><code class="ruby">class Ruby
+
+    def self.has_many(name)
+        puts ‘#{self} has many #{name}”
+    end
+
+    has_many :gems
+
+end
+
+=&gt; “Ruby has many gems”
+</code></pre>
+
+<p>If has_many :gems calls on the method Ruby.has_many method, and passed in gems for the name argument.</p>
+
+<p>In Rails, the has_many dynamically defines a handful of methods for managing the association.  For example, in this case it would generate a gems method, that would return the gems associated with the Ruby class.  How would we do that?</p>
+
+<pre><code class="ruby">class Ruby
+
+    def self.has_many(name)
+        puts "#{self} has many #{name}”
+
+    def gems
+        puts “SELECT * FROM gems WHERE …"
+        puts “returning gems”
+        []
+
+    end
+
+    has_many :gems
+end
+</code></pre>
+
+<p>However, this is hard-coded, and we don’t yet know the names of those methods until run-time, so we need to dynamically define those methods, on the fly.</p>
+
+<p> Dynamic methods are a set of methods that can create or call methods when the actual name of the method is not known. The define_method is a dynamic method which takes the name of the method we want to generate.  The body of the block becomes the body of the method.</p>
+
+<p>We want to define a method that corresponds to the name of the association, and we have that in the argument name.  define_methods, when executed, create other methods that can then be called on an instance object. It defines an instance method in the receiver, which in this case is the Ruby class.</p>
+
+<pre><code class="ruby">class Ruby
+
+    def self.has_many(name)
+        puts ‘#{self} has many #{name}”
+
+        define_method(name) do
+            puts “SELECT * FROM #{name} WHERE …”
+            puts “returning #{name}”
+            []
+
+    end
+
+    has_many :gems
+
+end
+
+ruby = Ruby.new
+ruby.gems
+
+=&gt;
+Ruby has many gems
+SELECT * FROM gems WHERE…
+returning gems.
+[“Annotate”, “Pry”, “Better_errors”]
+</code></pre>
+
+<p>When we run this code it first calls on has_many :gems, and defines the method.  Then if we call ruby.gems, it will run the method and return the gems.<br/>
+Because we define it dynamically, we can also say has_many :methods, or anything else, for that matter.</p>
+
+<p>Now how do we share this across multiple classes?</p>
+
+<pre><code class="ruby">module ActiveRecord
+  class Base
+    def self.has_many(name)
+        puts ‘#{self} has many #{name}”
+
+        define_method(name) do
+            puts “SELECT * FROM #{name} WHERE …”
+            puts “returning #{name}”
+            []
+     end
+  end
+end
+
+class Ruby &lt; ActiveRecord::Base
+
+    has_many :gems
+    has_many :methods
+end
+</code></pre>
+
+<p>Now things are beginning to look more familiar.  We put this in the class Base in a module named ActiveRecord, and have our classes inherit these magical powers.</p>
+
+<p><img src="/images/i_love_magic.gif" width="600"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pipes]]></title>
+    <link href="http://itsatype.github.io/blog/2016/02/13/my-first-post-on-octopress/"/>
+    <updated>2016-02-13T00:00:33-05:00</updated>
+    <id>http://itsatype.github.io/blog/2016/02/13/my-first-post-on-octopress</id>
+    <content type="html"><![CDATA[<p><img src = "../images/pipes.png" width = "500px;" /></p>
+
+<p>The double pipes, also known as a short circuit operator because it will only evaluate the second argument if the first argument is not sufficient to determine the value of the expression, is a great tool for writing concise code.   In addition to being the logical &ldquo;or&rdquo; operator, they&rsquo;re handy when used with a method which may evaluate to nil, such as find, or when used with the assignment operator, the &ldquo;or equals&rdquo;.
+For me, they&rsquo;ve been like that cool kid that you see around, but don&rsquo;t think you can ever relate to. But then you get acquainted, speak to them once or twice, finally get to know them, and they&rsquo;re suddenly someone you love having around.</p>
+
+<h2>Double Pipe Equals: ||=</h2>
+
+<p>However, things may seem counter-intuitive when using it as a conditional assignment operator, because the || = works differently than other operators such as the += or -=.</p>
+
+<h3>The Misconception</h3>
+
+<p><img src = "../images/misconception.jpg" width = "300px;" /></p>
+
+<p>So:
+<code>ruby
+X += Y
+</code>
+is the same as:
+<code>ruby
+X = X + Y
+</code>
+Therefore you would expect:
+<code>ruby
+X ||= Y
+</code>
+To mean:
+<code>ruby
+X = X || Y
+</code></p>
+
+<p>But what it is actually shorthand for is:
+<code>ruby
+X || X = Y
+</code></p>
+
+<p>What it means is if X is false, nil or undefined, then evaluate Y and set X to the result.  Ruby&rsquo;s short circuit evaluation means that if X is defined and evaluates to true, then the right hand side of the operator is not evaluated, and no assignment takes place.</p>
+
+<p>In Essence:</p>
+
+<pre><code class="ruby ">a ||= 1;
+=&gt; 1
+a ||= 2;
+=&gt; 1
+
+foo = false;
+=&gt; false
+foo ||= true;
+=&gt; true
+foo ||= false;
+=&gt; true
+</code></pre>
+
+<p>This can be handy when assigning key/value pairs with hashes.  For example, when given a hash, this expression:</p>
+
+<pre><code class="ruby ">hash[:key] ||= "value"
+</code></pre>
+
+<p>Expands to:</p>
+
+<pre><code class="ruby ">hash[:key] || hash[:key] = "value"
+</code></pre>
+
+<p>This means that hash[:key] = &ldquo;value&rdquo; will only be executed if hash[:key] is either false or nil, meaning the key does not yet exist.  So if the key already exists, the value will not be changed, since the left side evaluates to true, and it will return the value for that key.  If, however, the key does not exist, the left side will evaluate to nil, in which case it will execute the right side, and create the key/value pair.</p>
+
+<p>This distinction is also significant when used with a setter/getter method in a Class.  For example, we can has an instance method for calculating the total:</p>
+
+<pre><code class="ruby ">Class CashRegister
+
+  def total
+    @total ||= (1..100).to_a.inject(:+)
+  end
+
+end
+</code></pre>
+
+<p>Now we can call on the total method as many times as we&rsquo;d like.  The first time, @total will evaluate to nil, and will calculate the total to the right.  It will then also assign @total to that value.  On all future events where we call on that method, it will simply return the value of @total.</p>
+
+<p>That&rsquo;s that for pipes. It&rsquo;s a good friend to have.</p>
+
+<p><img src = "../images/time_up.png" width="400px;" /></p>
+]]></content>
+  </entry>
+  
+</feed>

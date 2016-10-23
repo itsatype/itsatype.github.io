@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: flatiron&nbsp;school | Leah's Loop]]></title>
+  <link href="http://itsatype.github.io/blog/categories/flatiron-school/atom.xml" rel="self"/>
+  <link href="http://itsatype.github.io/"/>
+  <updated>2016-10-23T14:20:56-04:00</updated>
+  <id>http://itsatype.github.io/</id>
+  <author>
+    <name><![CDATA[Leah]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Stay weird, JS]]></title>
+    <link href="http://itsatype.github.io/blog/2016/03/27/stay-weird/"/>
+    <updated>2016-03-27T14:54:13-04:00</updated>
+    <id>http://itsatype.github.io/blog/2016/03/27/stay-weird</id>
+    <content type="html"><![CDATA[<h2>Why the Wat</h2>
+
+<p><img src="/images/what.gif" width="300"></p>
+
+<p>Javascript is weird.  There are some odd behaviors it exhibits, with strange outcomes. You can learn more about some of it’s oddities by watching <a href="https://www.destroyallsoftware.com/talks/wat">this lightning talk</a> by Gary Bernhardt from CodeMash 2012.</p>
+
+<p>But hey, that’s enough trash talk.  In the spirit of giving the benefit of the doubt, let’s explore the reasons for some of its odd behavior. Maybe it&rsquo;s just having a bad day.  Maybe it was never loved as a child.  We don&rsquo;t know.</p>
+
+<p>First and foremost, we should know that the general rule in Javascript is that the plus operator can be used for the following:</p>
+
+<ol>
+<li>As an addition operator, operating on two numbers</li>
+<li>As a string concatenation operator, operating on two strings</li>
+<li>As a prefix operator, indicating a positive number, operating on a single number</li>
+</ol>
+
+
+<p> This means you can only add Numbers and Strings, so any time you are using the + operator and are trying to add other values, such as arrays or objects, Javascript will convert it to either a string or a number, first.</p>
+
+<ul>
+<li>Boolean, Null, and Undefined coerce to a number</li>
+<li>Objects and functions all coerce to a string</li>
+</ul>
+
+
+<p>Here we go.</p>
+
+<hr />
+
+<p><strong>Array + Array = Empty String</strong></p>
+
+<pre><code class="javascript">[] + [] = ‘’
+</code></pre>
+
+<p>Since our object is an array, and an array object has a valid toString() method on it, Javascript will try to convert it to a string by calling the object.toString().</p>
+
+<pre><code class="javascript">[].toString() 
+
+=&gt; ‘’
+</code></pre>
+
+<p>For arrays, this is the same as calling [ ].join(), which will also return an empty string.  Therefore, [] + [] is the concatenation of two empty strings, which will return a single empty string.</p>
+
+<pre><code class="javascript">‘’ + ‘’
+
+ =&gt; ‘’
+</code></pre>
+
+<p>Next:</p>
+
+<p><strong>Array + Object = &lsquo;[object Object]’</strong></p>
+
+<pre><code class="javascript">[] + {} = '[object Object]’
+</code></pre>
+
+<p>Similar to the above, we already know Javascript will attempt to convert both to primitives.  It will return an empty string for the array.  Then, it will attempt to call the toString method on the right-hand side (RHS), which is our object.  However, {} does not implement a toString() method. However, all objects do inherit this method from Object.prototype, which, when calling toString() on Object, will return ‘object’, and the value of the object, as follows:</p>
+
+<ul>
+<li>If the value is undefined: &ldquo;[object Undefined]&rdquo;</li>
+<li>If the value is null “[object Null]</li>
+</ul>
+
+
+<p>Since an empty object is neither null, nor undefined, it will return ‘[object Object]’.</p>
+
+<pre><code class="javascript">String( { foo: ‘bar’ } )
+
+=&gt;  ‘[object Object]’
+</code></pre>
+
+<p>So when concatenating ‘’ +  ‘[object Object]’, it will still return: &lsquo;[object Object]’</p>
+
+<p><strong>Object + Empty Arary = 0</strong></p>
+
+<pre><code class="javascript">{} + [] = 0
+</code></pre>
+
+<p>This is where things start getting weird.  When coding in JS, we wrap our statements in curly braces, such as if and else, to indicate a code block. Generally speaking, if the { appears at the beginning of a statement it’s going to be interpreted as a code block, so it will simply look at the left-hand side (LHS) operand as an empty block of code.  That would mean the + appears as the beginning of the next statement, and it is interpreted as prefixing a positive number.  And an array, all together now, is coerced into an empty string.  Because of the + prefix, it will then convert that to a number.  What happens when we coerce an empty string to a number?</p>
+
+<pre><code class="javascript">Number(“”)
+
+ =&gt; 0
+</code></pre>
+
+<p>We’ve got this.</p>
+
+<p><strong>Object + Object = Not A Number</strong></p>
+
+<pre><code class="javascript">{} + {} = NaN
+</code></pre>
+
+<p>This should be easy, seeing as we already know Javascript’s quirks.  It will interpret the LHS as an empty code block. It will then try to convert the RHS, by first returning ‘[object Object]’, if you remember that.  Then, since it sees + as a prefix + operator indicating a positive number, it will attempt to convert it to a number.  What happens when we convert strings to numbers?</p>
+
+<pre><code class="javascript">Number(“Foo”) 
+
+=&gt; NaN
+</code></pre>
+
+<hr />
+
+<p>And voila, there we have it.</p>
+
+<p>Okay, so maybe Javascript is still a little weird. But weird is good.  At least that&rsquo;s what my mother used to tell me.</p>
+
+<h4><em>“Be weird. Be random. Be who you are.&ldquo;</em></h4>
+
+<p>&ndash; <em>C.S. Lewis</em></p>
+
+<p><img src="/images/bowties.png" width="500"></p>
+]]></content>
+  </entry>
+  
+</feed>
