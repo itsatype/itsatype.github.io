@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 <!DOCTYPE html>
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
 <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
@@ -357,171 +356,6 @@ First, we create an Adwords class, which we initialize with the JSON Data we rec
 
 
   <div class="entry-content"><h2>Programming in Paris..um, I meant Pairs.</h2>
-=======
-<!DOCTYPE HTML>
-<html lang="en-GB">
-<head>
-	<meta charset="utf-8">
-	<title>Blog  | Leah's Loop</title>
-
-	<meta name="author" content="Leah">
-
-<meta name="description" content="Programming in Paris..um, I meant Pairs. That was me fumbling because I was typing while pair programming, which often leads me to erratic typing &hellip;"> <meta name="keywords" content="">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<link href="/atom.xml" rel="alternate" title="Leah's Loop" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	
-
-</head>
-
-
-
-<body>
-	<header id="header" class="inner"><h1><a href="/">Leah's Loop</a></h1>
-<span class="tagline"></span>
-<nav id="main-nav"><ul class="main-nav">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/about">About</a></li>
-	<li><a href="/archives">Archives</a></li>
-</ul>
-</nav> 
-<nav id="mobile-nav">
- 	<div class="alignleft menu"> 
- 		<a class="button">Menu</a> 
- 		<div class="container"><ul class="main-nav">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/about">About</a></li>
-	<li><a href="/archives">Archives</a></li>
-</ul>
-</div> 
- 	</div> 
- </nav> 
-
-
-</header>
-
-	<div id="content" class="inner">
-
-
-
-
-
-
-
-
-
-   <article class="post">
-	<header>
-		<h2 class="title">
-			
-			<a href="/blog/2016/04/09/pair-programming/">Lists, Lists, Lists.  And IEnumerables</a>
-			
-		</h2>
-		<div class="meta date">
-
-
-
-<time class='entry-date' datetime='2016-07-07T00:00:00-04:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span></time></div>
-	</header>
-	<div class="entry-content">
-		<h2>Arrays, Lists, IEnumerables, and IQueryables.  Am I forgetting something?</h2>
-
-<p>Recently I've had to make the switch from coding in Ruby to coding in C#.  And while a lot of the concepts stay the same, it takes some getting used to switching from a dynamically typed to a statically typed language.</p>
-
-<p>Let’s compare enumerables in both languages.  First, the basics:</p>
-<h4><em>enumerable</em></h4>
-<p><em>adjective  enu•mer•a•ble \i-'n(y)üm-r?-b?l, -'n(y)ü-m?-\</em></p>
-
-<p><em>Definition of enumerable</em></p>
-<h4><em>:  countable</em></h4>
-
-<p>So, in simplest terms, an enumerable in C# or in Ruby, is any collection that can be 'counted', or as is more often the case when programming, can be iterated over.</p>
-
-
-<p>So whether it's the .each in Ruby or the foreach in C#, they both iterate over a collection, such as an array, list, or hash.  And while the concept of enumerators are the same, C# has multiple types which seemingly do the same thing.  There are Arrays, Lists, IEnumerables, and IQueryables. Of course, in most cases there is one that is best for the job.  Because we’ve all got our time to shine.<br />
-I will attempt to explain the nuances of each, and which type is most suited for which case.</p>
-
-<h2>List</h2>
-<p>A C# List is simply an Array that can be resized, and offers more functionality.  But then C# also has an IEnumerable.  It looks like a List, it acts like a List, but it isn't a List.  To be fair, it doesn't act exactly like a list, but it's also used as a collection that can be iterated over.  So what are the differences, and when is it best to use which?</p>
-
-<h2>IEnumerable</h2>
-<p>In summary, an IEnumerable is a C# interface for any collection that can be enumerated using a foreach statement.  IEnumerable is an interface whereas List is a concrete C# class.  If you look at the documentation for an IEnumerable, it simply contains a single method: </p>
-
-
-<script src="https://gist.github.com/itsatype/6aa620e0f579062a639f03e852611c50.js"></script>
-
-
-<p>This is because the GetEnumerator method must return an instance of an object of a class which implements the IEnumerator interface. 
-So when using foreach, if the class contains, for example, a List, we use the List's GetEnumerator method.  
-In summary, IEnumerable describes behavior, while List is an implementation of that behavior. </p>
-
-<p>So which do we use? That depends.   One crucial difference is that IEnumerable is read-only whereas List is not.  So if you are iterating and would like the ability to make permanent 
-changes and change the collection, you will need a List. But if you just need to read, sort, or filter the collection, an IEnumerable is sufficient.</p>
-
-<p>When using Linq to select or query your database, should the return type be an IEnumerable or List?  Because Linq doesn't generate the SQL to query the database until you enumerate it, it's best to use IEnumerable, because by only specifying the behavior, instead of the actual List you give the compiler a chance to defer work until later, possibly optimizing the program.  For example, it might pull only 10 rows at a time, or cache the data, making the program more efficient.</p>
-
-<p>Consider this:</p>
-<script src="https://gist.github.com/itsatype/9fcf9a2a806d733da400b1694e13d9cc.js"></script>
-
-<p>However, there are always exceptions to prove the rule.  It isn’t necessarily always better to be using an IEnumerable.  If you want to prevent a query from being executed more than once, a List is obviously more efficient.
-In the above, FunnyFiction and FunnyBios get converted into single SQL queries each, and the database only returns the rows that are relevant.<br/>
- But if we had returned a List from AllHumor(), then it may run slower because the database could return far more data than is actually needed, and we waste cycles doing the filtering in the client.  Therefore, it may be better to defer converting your query to a list until the very end, so if we’re going to enumerate through FunnyFiction and FunnyBios multiple times, it’s best to do this: </p>
-
-<script src="https://gist.github.com/itsatype/761da76eb6f11a5b904313edcf969622.js"></script>
-
-<h2>Moving on…IQueryables</h2>
-
-If we look at the MSDN Documentation, we can see that IQueryable inherits from the IEnumerable interface.
-
-<script src="https://gist.github.com/itsatype/40d2b54a6e17e746c048a3a26202ec7f.js"></script>
-
-<p>So then how do they differ?</p>
-<p>The primary difference between them is that an IEnumerable executes a select query on the server side, loads the data into memory on the client side and only then filters the data. That means it’s doing more work by filtering after loading the data into memory, thus making it less efficient.  An IQueryable, on the other hand, executes a select query on the server side with all the filters, while querying the databaseThat means it’s doing less work, making it more efficient.  And who doesn’t love that.  Less work, I mean.</p>
-
-<p>Furthermore, if you further refine your query on an IQueryable, that query will be executed in the database, if possible.  In the case of an IEnumerable, it will be Linq-to-object first, and all objects from the original query will have to be loaded into memory from the database.<br />
-This is quite an important distinction, and using an IQueryable will often save you from returning too many rows from the database. </p>
-
-
-<h4><em>And now we know everything.  EVERYTHING. iPods and iPads explained next.</em></h4>
-
-<p>Resources:</p>
-
-<p><a href="http://blog.falafel.com/understanding-ienumerable-iqueryable-c/">IEnumerables vs IQueryables</a><br />
-<a href="http://stackoverflow.com/questions/3628425/ienumerable-vs-list-what-to-use-how-do-they-work">IEnumerables vs Lists</a></p>
-
-
-		
-		
-	</div>
-
-
-	
-	</article>
-
-
-
-    <article class="post">
-	<header>
-		<h2 class="title">
-			
-			<a href="/blog/2016/04/09/pair-programming/">Pair Programming</a>
-			
-		</h2>
-		<div class="meta date">
-
-
-
-<time class='entry-date' datetime='2016-04-09T00:00:00-04:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span></time></div>
-	</header>
-	<div class="entry-content">
-		<h2>Programming in Paris...um, I meant Pairs.</h2>
->>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
 
 <p><em>That was me fumbling because I was typing while pair programming, which often leads me to erratic typing and the inevitable ensuing typos.</em></p>
 
@@ -604,7 +438,6 @@ This is quite an important distinction, and using an IQueryable will often save 
 <p><a href="http://www.amazon.com/Pair-Programming-Illuminated-Laurie-Williams/dp/0201745763">Pair Programming Illuminated</a></p>
 
 <p>To become a better pair programmer, also read about: <a href="http://blog.codinghorror.com/the-ten-commandments-of-egoless-programming/">Egoless Programming</a></p>
-<<<<<<< HEAD
 </div>
   
   
@@ -643,33 +476,6 @@ This is quite an important distinction, and using an IQueryable will often save 
 
 
   <div class="entry-content"><h2>Why the Wat</h2>
-=======
-
-		
-		
-	</div>
-
-
-	
-	</article>
-
-
-    <article class="post">
-	<header>
-		<h2 class="title">
-			
-			<a href="/blog/2016/03/27/stay-weird/">Stay Weird, JS</a>
-			
-		</h2>
-		<div class="meta date">
-
-
-
-<time class='entry-date' datetime='2016-03-27T14:54:13-04:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span></time></div>
-	</header>
-	<div class="entry-content">
-		<h2>Why the Wat</h2>
->>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
 
 <p><img src="/images/what.gif" width="300"></p>
 
@@ -806,7 +612,6 @@ This is quite an important distinction, and using an IQueryable will often save 
 <p>&ndash; <em>C.S. Lewis</em></p>
 
 <p><img src="/images/bowties.png" width="500"></p>
-<<<<<<< HEAD
 </div>
   
   
@@ -845,33 +650,6 @@ This is quite an important distinction, and using an IQueryable will often save 
 
 
   <div class="entry-content"><h2>Magic in Macros &amp; Metaprogramming</h2>
-=======
-
-		
-		
-	</div>
-
-
-	
-	</article>
-
-
-    <article class="post">
-	<header>
-		<h2 class="title">
-			
-			<a href="/blog/2016/03/15/magic-in-macros-and-metaprogramming/">That’s So Meta</a>
-			
-		</h2>
-		<div class="meta date">
-
-
-
-<time class='entry-date' datetime='2016-03-15T00:24:19-04:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span></time></div>
-	</header>
-	<div class="entry-content">
-		<h2>Magic in Macros &amp; Metaprogramming</h2>
->>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
 
 <p><img src="/images/magic.png" width="600"></p>
 
@@ -1056,7 +834,6 @@ Because we define it dynamically, we can also say has_many :methods, or anything
 <p>Now things are beginning to look more familiar.  We put this in the class Base in a module named ActiveRecord, and have our classes inherit these magical powers.</p>
 
 <p><img src="/images/i_love_magic.gif" width="600"></p>
-<<<<<<< HEAD
 </div>
   
   
@@ -1095,33 +872,6 @@ Because we define it dynamically, we can also say has_many :methods, or anything
 
 
   <div class="entry-content"><p><img src = "../images/pipes.png" width = "500px;" /></p>
-=======
-
-		
-		
-	</div>
-
-
-	
-	</article>
-
-
-    <article class="post">
-	<header>
-		<h2 class="title">
-			
-			<a href="/blog/2016/02/13/my-first-post-on-octopress/">Pipes</a>
-			
-		</h2>
-		<div class="meta date">
-
-
-
-<time class='entry-date' datetime='2016-02-13T00:00:33-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span></time></div>
-	</header>
-	<div class="entry-content">
-		<p><img src = "../images/pipes.png" width = "500px;" /></p>
->>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
 
 <p>The double pipes, also known as a short circuit operator because it will only evaluate the second argument if the first argument is not sufficient to determine the value of the expression, is a great tool for writing concise code.   In addition to being the logical &ldquo;or&rdquo; operator, they&rsquo;re handy when used with a method which may evaluate to nil, such as find, or when used with the assignment operator, the &ldquo;or equals&rdquo;.
 For me, they&rsquo;ve been like that cool kid that you see around, but don&rsquo;t think you can ever relate to. But then you get acquainted, speak to them once or twice, finally get to know them, and they&rsquo;re suddenly someone you love having around.</p>
@@ -1238,7 +988,6 @@ For me, they&rsquo;ve been like that cool kid that you see around, but don&rsquo
 <p>That&rsquo;s that for pipes. It&rsquo;s a good friend to have.</p>
 
 <p><img src = "../images/time_up.png" width="400px;" /></p>
-<<<<<<< HEAD
 </div>
   
   
@@ -1315,48 +1064,10 @@ For me, they&rsquo;ve been like that cool kid that you see around, but don&rsquo
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
-=======
-
-		
-		
-	</div>
-
-
-	
-	</article>
-
-<nav id="pagenavi">
-    
-    
-</nav>
-</div>
-	<footer id="footer" class="inner"><br>
-<br>
-<br>
-<br>
-&copy; 2013-2016
-
-    Leah
-
-</footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/hyphenator.js"></script>
-
-
->>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
 
 
 
 
 
 </body>
-<<<<<<< HEAD
-=======
-<script>
-  $(document).ready(function() {
-  // Make images center
-  $('p:has(img)').css('text-align', 'center');
-  });
-</script>
->>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
 </html>

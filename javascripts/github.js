@@ -13,13 +13,8 @@ var github = (function(){
   return {
     showRepos: function(options){
       $.ajax({
-<<<<<<< HEAD
           url: "https://api.github.com/users/"+options.user+"/repos?sort=pushed&callback=?"
         , dataType: 'jsonp'
-=======
-          url: "https://api.github.com/users/"+options.user+"/repos?callback=?"
-        , type: 'jsonp'
->>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
         , error: function (err) { $(options.target + ' li.loading').addClass('error').text("Error loading feed"); }
         , success: function(data) {
           var repos = [];
@@ -28,17 +23,6 @@ var github = (function(){
             if (options.skip_forks && data.data[i].fork) { continue; }
             repos.push(data.data[i]);
           }
-<<<<<<< HEAD
-=======
-          repos.sort(function(a, b) {
-            var aDate = new Date(a.pushed_at).valueOf(),
-                bDate = new Date(b.pushed_at).valueOf();
-
-            if (aDate === bDate) { return 0; }
-            return aDate > bDate ? -1 : 1;
-          });
-
->>>>>>> 3100bda1e75750754e071d5abaaed6174248e5a4
           if (options.count) { repos.splice(options.count); }
           render(options.target, repos);
         }
