@@ -4,7 +4,7 @@
   <title><![CDATA[Category: api | Leah's Loop]]></title>
   <link href="http://itsatype.github.io/blog/categories/api/atom.xml" rel="self"/>
   <link href="http://itsatype.github.io/"/>
-  <updated>2016-10-23T19:20:13-04:00</updated>
+  <updated>2016-10-23T19:32:23-04:00</updated>
   <id>http://itsatype.github.io/</id>
   <author>
     <name><![CDATA[Leah]]></name>
@@ -46,7 +46,7 @@ Recently, I’ve attempted to access the Google Adwords API to automate reports.
 <h3>1. Developer Token</h3>
 
 <p>  When you&rsquo;re logged in to AdWords with your manager account, click on the gear icon in the top right corner; select Account settings from the drop-down menu; then AdWords API Center from the left menu, and follow the instructions to apply for AdWords API access.
-  *Note: Your pending developer token must be approved before using it with production AdWords accounts.  I know, it&rsquo;s a process.</p>
+  <em>Note: Your pending developer token must be approved before using it with production AdWords accounts. You have the option of creating a test account <a href="https://adwords.google.com/um/Welcome/Home?a=1&amp;sf=mt&amp;authuser=0#ta">here</a>, if you can&rsquo;t wait to dive in.</em></p>
 
 <h3>2. Client Customer Id</h3>
 
